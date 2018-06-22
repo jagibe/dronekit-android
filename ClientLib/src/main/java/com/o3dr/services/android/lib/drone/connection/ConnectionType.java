@@ -14,6 +14,7 @@ public class ConnectionType {
         TYPE_USB,
         TYPE_UDP,
         TYPE_TCP,
+        TYPE_TCP_POOL,
         TYPE_BLUETOOTH,
         TYPE_SOLO
     })
@@ -84,6 +85,36 @@ public class ConnectionType {
      * Default value for the tcp server port.
      */
     public static final int DEFAULT_TCP_SERVER_PORT = 5763;
+
+
+    /**
+     * TCP Pool connection type
+     */
+    public static final int TYPE_TCP_POOL = 4;
+    /**
+     * Key used to retrieve the tcp poolserver ip from the connection parameter bundle
+     */
+    public static final String EXTRA_TCP_POOL_SERVER_IP = "extra_tcp_pool_server_ip";
+    /**
+     * Key used to retrieve the tcp poolserver port from the connection parameter bundle
+     */
+    public static final String EXTRA_TCP_POOL_SERVER_PORT = "extra_tcp_pool_server_port";
+    /**
+     * Default value for the tcp poolserver port.
+     */
+    public static final int DEFAULT_TCP_POOL_SERVER_PORT = 8888;
+    /**
+     * Key used to retrieve the imei of the dron
+     */
+    public static final String EXTRA_TCP_POOL_IMEI = "extra_tcp_pool_imei";
+    /**
+     * Key used to retrieve the password to access dron
+     */
+    public static final String EXTRA_TCP_POOL_PASSWORD = "extra_tcp_pool_password";
+
+
+
+
     /**
      * Bluetooth connection type
      */
@@ -116,6 +147,9 @@ public class ConnectionType {
 
             case TYPE_TCP:
                 return "tcp";
+
+            case TYPE_TCP_POOL:
+                return "tcp Pool";
 
             case TYPE_UDP:
                 return "udp";

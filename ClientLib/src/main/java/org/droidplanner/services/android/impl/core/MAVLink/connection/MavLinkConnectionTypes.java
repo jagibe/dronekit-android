@@ -25,6 +25,10 @@ public class MavLinkConnectionTypes {
 	 */
 	public static final int MAVLINK_CONNECTION_TCP = 2;
 
+	/**
+	 * TCP Pool mavlink connection.
+	 */
+	public static final int MAVLINK_CONNECTION_TCP_POOL = 4;
 	// Not instantiable
 	private MavLinkConnectionTypes() {
 	}

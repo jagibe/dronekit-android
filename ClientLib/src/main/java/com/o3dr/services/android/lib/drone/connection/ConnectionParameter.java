@@ -212,6 +212,56 @@ public class ConnectionParameter implements Parcelable {
             eventsDispatchingPeriod);
     }
 
+
+    /**
+     *
+     * @param tcpPoolServerIp TCP Pool server IP address.
+     * @param tlogLoggingUri Uri where the tlog data should be logged. Pass null if the tlog data shouldn't be logged
+     * @return Returns {@link ConnectionParameter} with type {@link ConnectionType#TYPE_TCP_POOL}.
+     */
+    public static ConnectionParameter newTcpPoolConnection(String tcpPoolServerIp, String imei, String password,
+                                                           @Nullable Uri tlogLoggingUri) {
+
+        return newTcpPoolConnection(tcpPoolServerIp, ConnectionType.DEFAULT_TCP_POOL_SERVER_PORT,imei,password, tlogLoggingUri,
+                DEFAULT_EVENTS_DISPATCHING_PERIOD);
+    }
+    /**
+     *
+     * @param tcpPoolServerIp TCP Pool server IP address.
+     * @param tcpPoolServerPort TCP Pool server port.
+     * @param tlogLoggingUri Uri where the tlog data should be logged. Pass null if the tlog data shouldn't be logged
+     * @return Returns {@link ConnectionParameter} with type {@link ConnectionType#TYPE_TCP_POOL}.
+     */
+    public static ConnectionParameter newTcpPoolConnection(String tcpPoolServerIp, int tcpPoolServerPort, String imei, String password,
+                                                           @Nullable Uri tlogLoggingUri) {
+
+        return newTcpPoolConnection(tcpPoolServerIp, tcpPoolServerPort,imei,password, tlogLoggingUri,
+                DEFAULT_EVENTS_DISPATCHING_PERIOD);
+    }
+    /**
+     *
+     * @param tcpPoolServerIp TCP Pool server IP address.
+     * @param tcpPoolServerPort TCP Pool server port.
+     * @param tlogLoggingUri Uri where the tlog data should be logged. Pass null if the tlog data shouldn't be logged
+     * @param eventsDispatchingPeriod Dictates how long (in milliseconds) to wait before dispatching
+     *                                buffered drone events. A value of OL means events should be
+     *                                dispatched as soon as they are received.
+     * @return Returns {@link ConnectionParameter} with type {@link ConnectionType#TYPE_TCP_POOL}.
+     */
+    public static ConnectionParameter newTcpPoolConnection(String tcpPoolServerIp, int tcpPoolServerPort, String imei, String password,
+                                                           @Nullable Uri tlogLoggingUri,
+                                                           long eventsDispatchingPeriod) {
+        Bundle paramsBundle = new Bundle(4);
+        paramsBundle.putString(ConnectionType.EXTRA_TCP_POOL_SERVER_IP, tcpPoolServerIp);
+        paramsBundle.putInt(ConnectionType.EXTRA_TCP_POOL_SERVER_PORT, tcpPoolServerPort);
+        paramsBundle.putString(ConnectionType.EXTRA_TCP_POOL_IMEI, imei);
+        paramsBundle.putString(ConnectionType.EXTRA_TCP_POOL_PASSWORD, password);
+
+        return new ConnectionParameter(ConnectionType.TYPE_TCP_POOL, paramsBundle, tlogLoggingUri,
+                eventsDispatchingPeriod);
+    }
+
+
     /**
      *
      * @param bluetoothAddress Bluetooth address.
